@@ -1,6 +1,7 @@
 :root {
     --butonsColor: #475569;
     --darkgrey: #1E293B;
+    --description: #091123;
 }
 
 * {
@@ -100,10 +101,27 @@ button:hover {
     background-color: var(--darkgrey);
     border: 0.1px solid rgba(255, 255, 255, 0.192);
     box-shadow: 1px 0px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
     background-size: cover;
+    
 }
+.itemCont-focus{
+    box-shadow: 1px 0px 15px rgba(255, 255, 255, 0.5);
+    animation: growShadow 1s infinite alternate;
+}
+@keyframes growShadow {
+    0% {
+      box-shadow: 1px 0px 15px rgba(255, 255, 255, 0.6);
+    }
+    50% {
+      box-shadow: 1px 0px 25px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+      box-shadow: 1px 0px 15px rgba(255, 255, 255, 0.6);
+    }
+  }  
 
-.item-cont>div {
+.statcont {
     opacity: 0;
     width: 2.25rem;
     height: 1.5rem;
@@ -114,6 +132,38 @@ button:hover {
     position: relative;
     top: 85%;
     left: 70%;
+}
+.menu{
+    display: none;
+    width: 128px;
+    padding: 10px;
+    color: white;
+    background-color: var(--darkgrey);
+    border: 0.1px solid rgba(255, 255, 255, 0.192);
+}
+.activo{
+    position: absolute;
+    top: -500px;
+    cursor: default;
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnMenu{
+    width: 100%;
+    font-size: 1.5rem;
+    border: 0.1px solid rgba(255, 255, 255, 0.192);
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+.btnMenu:hover{
+    border: 0.1px solid rgba(255, 255, 255, 1);
 }
 
 /*----RIGHT----*/
@@ -139,14 +189,71 @@ button:hover {
     justify-content: center;
 }
 
-.equip {
+.equipo {
     width: 64px;
     height: 64px;
     background-color: var(--darkgrey);
     border: 0.1px solid rgba(255, 255, 255, 0.192);
 }
 
-.right-bottom{
+.right-bottom {
+    background-color: var(--butonsColor);
     opacity: 0;
-    width: 500px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.right-bottom>h2 {
+    width: 100%;
+    font-size: 1.4rem;
+    background-color: var(--description);
+    padding: 20px;
+}
+
+.contenido {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stats {
+    text-align: center;
+    display: flex;
+    gap: 10px;
+}
+
+.statContent {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statInitial > p,
+.statFinal > p {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weap {
+    background-image: url("https://practise-game-inventory.vercel.app/_next/static/media/sword.91ac01bf.svg");
+    background-size: cover;
+}
+
+.shie {
+    background-image: url("https://practise-game-inventory.vercel.app/_next/static/media/shield.f816a312.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.arm {
+    background-image: url("https://practise-game-inventory.vercel.app/_next/static/media/armor.5da7a91d.svg");
+    background-size: cover;
 }

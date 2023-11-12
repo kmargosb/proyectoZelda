@@ -265,13 +265,24 @@ const items = {
   ]
 }
 
+const stuff = document.querySelectorAll('.class-item');
+const itemCont = document.querySelectorAll('.item-cont');
+const statsCont = document.querySelectorAll('.statcont');
+const menu = document.querySelector('.menu');
+const description = document.querySelector('.description');
+const rightBottom = document.querySelector('.right-bottom');
+const statsInitial = document.querySelector('.statInitial > p');
+const statsFinal = document.querySelector('.statFinal > p');
+const type = document.querySelector('.type');
+const nombreStuff = document.querySelector('.right-bottom > h2');
+
 const weapons = items.weapons
 const shields = items.shields
 const armor = items.armors
 
-const stuff = document.querySelectorAll('.class-item');
-const itemCont = document.querySelectorAll('.item-cont');
-const statsCont = document.querySelectorAll('.item-cont > div')
+let weaponName = weapons.map(weapon => weapon.name)
+let shieldName = shields.map(shield => shield.name)
+let armorName = armor.map(armadura => armadura.name)
 
 let weaponIcon = weapons.map(weapon => weapon.icon)
 let shieldIcon = shields.map(shield => shield.icon)
@@ -281,8 +292,11 @@ let weaponStats = weapons.map(weapon => weapon.stats.damage)
 let shieldStats = shields.map(shield => shield.stats.defense)
 let armourStats = armor.map(armadura => armadura.stats.armor)
 
-console.log(armourStats)
+let weaponDescription = weapons.map(weapon => weapon.description)
+let shieldDescription = shields.map(shield => shield.description)
+let armorDescription = armor.map(armadura => armadura.description)
 
+//Botones Stuff (muestra las armas escudos y armaduras)
 stuff.forEach((item, i) => {
   item.addEventListener('click', () => {
     if (item.classList[1] == "weapon") {
@@ -341,6 +355,78 @@ stuff.forEach((item, i) => {
   })
 })
 
+//Selecciona cada elemento muestra su descripcion y sus stats + menu de agregar o remover
+itemCont.forEach((cont, i) => {
+
+  cont.addEventListener('click', (e) => {
+
+    if ((cont.style.backgroundImage).includes("weapon")) {
+      rightBottom.style.opacity = "1"
+      nombreStuff.innerText = `${weaponName[i]}`
+      description.innerText = `${weaponDescription[i]}`
+      statsFinal.innerText = `${weaponStats[i]}`
+      type.classList.remove("weap", "shie", "arm")
+      type.classList.add('weap')
+
+      !(Number(statsInitial.innerText) < Number(statsFinal.innerText))
+        ? (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid red")
+        : !(statsInitial.innerText > statsFinal.innerText)
+          ? (statsInitial.style.border = "1px solid red") && (statsFinal.style.border = "1px solid green")
+          : (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid green")
+    }
+    else if ((cont.style.backgroundImage).includes("shield")) {
+
+      type.classList.remove("weap", "shie", "arm")
+      rightBottom.style.opacity = "1"
+      nombreStuff.innerText = `${shieldName[i]}`
+      description.innerText = `${shieldDescription[i]}`
+      statsFinal.innerText = `${shieldStats[i]}`
+      type.classList.add('shie')
+
+      !(Number(statsInitial.innerText) < Number(statsFinal.innerText))
+        ? (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid red")
+        : !(statsInitial.innerText > statsFinal.innerText)
+          ? (statsInitial.style.border = "1px solid red") && (statsFinal.style.border = "1px solid green")
+          : (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid green")
+
+    } else if ((cont.style.backgroundImage).includes("armors")) {
+
+      type.classList.remove("weap", "shie", "arm")
+      rightBottom.style.opacity = "1"
+      nombreStuff.innerText = `${armorName[i]}`
+      description.innerText = `${armorDescription[i]}`
+      statsFinal.innerText = `${armourStats[i]}`
+      type.classList.add('arm')
+
+      !(Number(statsInitial.innerText) < Number(statsFinal.innerText))
+        ? (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid red")
+        : !(statsInitial.innerText > statsFinal.innerText)
+          ? (statsInitial.style.border = "1px solid red") && (statsFinal.style.border = "1px solid green")
+          : (statsInitial.style.border = "1px solid green") && (statsFinal.style.border = "1px solid green")
+    }
+    else { rightBottom.style.opacity = "0" }
+  })
+})
+
+
+// cont.classList.add("itemCont-focus")
+// cont.classList.remove("itemCont-focus")
+// e.target.classList.add("itemCont-focus") 
+
+
+itemCont.forEach((cont,i) =>{
+  cont.addEventListener('click', (e)=>{
+    // console.log(e.clientX, e.clientY)
+    menu.classList.toggle('activo')
+    menu.style.opacity = "1"
+    menu.style.left = `${e.clientX}px`
+    menu.style.top = `${e.clientY}px`
+
+    console.log(menu.style.top, e.clientX)
+    
+
+  })
+})
 
 
 
