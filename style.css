@@ -1,0 +1,114 @@
+:root {
+    --butonsColor: #475569;
+    --darkgrey: #1E293B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px 20px;
+    background-color: #334155;
+    font-family: ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*----MAIN----*/
+h1 {
+    color: white;
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+
+.btn-content {
+    padding: 30px 0;
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #64748B;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--butonsColor);
+}
+
+/*----INVENTORY----*/
+
+.inventory {
+    padding: 20px 15px;
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+}
+
+.inv {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.class {
+    display: flex;
+    gap: 15px;
+}
+
+.class-item {
+    width: 56px;
+    height: 56px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background-color: var(--butonsColor);
+    padding: 0.5rem;
+
+    display: flex;
+    gap: 8px;
+}
+
+.class-item:focus {
+    background-color: var(--darkgrey);
+}
+
+.items {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.item-cont {
+    width: 100px;
+    height: 100px;
+    background-color: var(--darkgrey);
+    border: 0.1px solid rgba(255, 255, 255, 0.192);
+    box-shadow: 1px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.inv-center{
+    display: flex;
+    gap: 2rem;
+
+}
+
+.equip{
+    width: 64px;
+    height: 64px;
+    background-color: var(--darkgrey);
+    border: 0.1px solid rgba(255, 255, 255, 0.192);
+}
