@@ -184,6 +184,7 @@ button:hover {
     gap: 2rem;
 }
 
+
 .inv-bottom {
     display: flex;
     justify-content: center;
@@ -194,6 +195,7 @@ button:hover {
     height: 64px;
     background-color: var(--darkgrey);
     border: 0.1px solid rgba(255, 255, 255, 0.192);
+    background-size: cover;
 }
 
 .right-bottom {
