@@ -17,10 +17,10 @@ const arma = document.querySelector('.arma');
 const pecho = document.querySelector('.pecho');
 const escudo = document.querySelector('.escudo');
 const cabeza = document.querySelector('.cabeza');
-const botas = document.querySelector('.botas')
+const botas = document.querySelector('.botas');
+let contenedorSelecct = false
 
 const {weapons, shields, armors} = items
-
 
 let weaponName = weapons.map(weapon => weapon.name)
 let shieldName = shields.map(shield => shield.name)
@@ -39,13 +39,13 @@ let shieldDescription = shields.map(shield => shield.description)
 let armorDescription = armors.map(armadura => armadura.description)
 
 //Botones Stuff (muestra las armas escudos y armaduras)
-stuff.forEach((item, i) => {
+stuff.forEach((item) => {
   item.addEventListener('click', () => {
     if (item.classList[1] == "weapon") {
       statsCont.forEach((stat, i) => {
         if (i < weaponStats.length) {
           stat.style.opacity = "1"
-          stat.innerText = `${weaponStats[i]}`
+          stat.innerText = `${weaponStats[i]}`;
         } else {
           stat.style.opacity = "0"
         }
@@ -97,8 +97,15 @@ stuff.forEach((item, i) => {
         }
       })
     }
+    if(item.classList[1] == "armor" || item.classList[1] == "shield" || item.classList[1] == "weapon"){
+      itemCont.forEach((contenedor) =>{
+        contenedor.classList.remove('itemCont-focus')
+      })
+    }
   })
 })
+
+
 
 //Selecciona cada elemento muestra su descripcion y sus stats + Menu de agregar o remover
 itemCont.forEach((cont, i) => {
@@ -108,16 +115,19 @@ itemCont.forEach((cont, i) => {
     const escudex = (cont.style.backgroundImage).includes("shield");
     const ropa = (cont.style.backgroundImage).includes("armors");
 
-    equip.addEventListener('click', (even) => {
+    equip.addEventListener('click', () => {
       if (espada) {
         menu.classList.remove('activo')
         arma.style.backgroundImage = 'none'
         arma.style.backgroundImage = `url("${weaponIcon[i]}")`
+        arma.id = e.target.id    
+         
       }
       else if (escudex) {
         menu.classList.remove('activo')
         escudo.style.backgroundImage = 'none'
         escudo.style.backgroundImage = `url("${shieldIcon[i]}")`
+        escudo.id = e.target.id
       }
       else if (ropa) {
         menu.classList.remove('activo')
@@ -127,14 +137,17 @@ itemCont.forEach((cont, i) => {
               case 'helm':
                 cabeza.style.backgroundImage = 'none'
                 cabeza.style.backgroundImage = `url("${pieza.icon}")`
+                cabeza.id = e.target.id;
                 break;
               case 'greave':
                 botas.style.backgroundImage = 'none'
                 botas.style.backgroundImage = `url("${pieza.icon}")`
+                botas.id = e.target.id;
                 break;
               case 'armor':
                 pecho.style.backgroundImage = 'none'
                 pecho.style.backgroundImage = `url("${pieza.icon}")`
+                pecho.id = e.target.id;
             }
           }
         })
@@ -146,6 +159,10 @@ itemCont.forEach((cont, i) => {
       menu.style.opacity = "1"
       menu.style.left = `${e.clientX}px`
       menu.style.top = `${e.clientY}px`
+      itemCont.forEach((contenedor, i) =>{
+        contenedor.classList.remove('itemCont-focus')
+      })
+      e.target.classList.add('itemCont-focus')
     } else {
       menu.classList.remove('activo')
     }

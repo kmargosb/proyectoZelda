@@ -102,7 +102,7 @@ button:hover {
     border: 0.1px solid rgba(255, 255, 255, 0.192);
     box-shadow: 1px 0px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    background-size: cover;
+    
     
 }
 .itemCont-focus{
